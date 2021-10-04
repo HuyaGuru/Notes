@@ -50,7 +50,7 @@ function PadEditable(props) {
 		<div className={`pad ${props.displayClass}`}>
 			<div className="pad-header">
 				<button
-					className="d-f ai-c bgc-n c-p fs-1-1 h-c-s"
+					className="d-f ai-c bgc-n c-p fs-1-1 h-c-s h-cu-p"
 					onClick={props.handlePadHide}
 				>
 					<img src={backIcon} alt="back" />
@@ -62,7 +62,7 @@ function PadEditable(props) {
 					value={padTitle}
 				></input>
 				<button
-					className="ml-a d-f ai-c bgc-n c-p fs-1-1 h-c-s cg-0-3"
+					className="ml-a d-f ai-c bgc-n c-p fs-1-1 h-c-s cg-0-3 h-cu-p"
 					onClick={handleOnClick}
 				>
 					<span>Done</span>

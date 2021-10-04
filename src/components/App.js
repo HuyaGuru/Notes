@@ -79,7 +79,7 @@ function App() {
 					}
 				})}
 				<div className="bottom">
-					<button className="button-circle" onClick={handleAddClick}>
+					<button className="button-circle h-cu-p" onClick={handleAddClick}>
 						<img src={addIcon} alt="new" />
 					</button>
 				</div>
