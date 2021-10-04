@@ -19,6 +19,6 @@ export const cardListSlice = createSlice({
 
 export const { push, pop } = cardListSlice.actions;
 
-export const cardList = (state) => state.cardList;
+export const cardListFunc = (state) => state.cardList;
 
 export default cardListSlice.reducer;

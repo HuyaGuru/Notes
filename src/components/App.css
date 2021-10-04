@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,400;0,700;1,400&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Nova+Mono&display=swap');
 
 :root {
     --pink: #ce93d8;
@@ -12,25 +13,31 @@
     box-sizing: border-box;
     font-family: "Red Hat Display", Helvetica, sans-serif;
 }
+
 body {
     height: 100vh;
     width: 100vw;
     margin: 0px;
     background-color: var(--greyBackground);
 }
+
 p {
     margin: 0;
 }
+
 button {
     border: none;
     outline: none;
     box-shadow: none;
+    background-color: rgba(0, 0, 0, 0);
 }
+
 hr {
     color: rgba(206, 147, 216, 0.5);
     width: 95%;
     margin-bottom: 1rem;
 }
+
 textarea {
     resize: none;
 }
@@ -38,6 +45,7 @@ textarea {
 #root {
     height: 100%;
 }
+
 .main-grid {
     display: grid;
     height: 100%;
@@ -45,6 +53,7 @@ textarea {
     grid-template-rows: repeat(1, 1fr);
     grid-template-areas: "nav pad";
 }
+
 .nav {
     background-color: var(--pink10);
     grid-area: nav;
@@ -54,6 +63,7 @@ textarea {
     flex-direction: column;
     height: 100%;
 }
+
 .top {
     background-color: rgba(80, 79, 79, 0.5);
     height: 4rem;
@@ -62,31 +72,37 @@ textarea {
     align-items: center;
     padding: 1rem;
 }
+
 .Brand {
     color: #9dd893;
-    font-weight: 700;
+    font-family: 'Nova Mono', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 400;
     font-size: 17px;
-    text-decoration: underline 2pt;
     letter-spacing: 0.05rem;
 }
+
 .top-delete {
     margin-left: auto;
 }
+
 .divider {
     display: flex;
     column-gap: 0.5rem;
     padding: 0rem;
     align-items: center;
 }
+
 .divider-text {
     color: #666262;
     font-size: 0.8rem;
     font-weight: 700;
 }
+
 .line {
     height: 1rem;
     width: 100%;
 }
+
 .card {
     margin: 0.5rem;
     padding: 0.5rem;
@@ -97,17 +113,21 @@ textarea {
     align-items: center;
     column-gap: 0.8rem;
 }
+
 .card-title {
     font-size: 1rem;
     font-weight: 700;
 }
+
 .card-date {
     font-style: italic;
     text-align: right;
 }
+
 .bottom {
     margin: auto 1rem 1rem auto;
 }
+
 .button-circle {
     background-color: var(--pinkLight);
     border-radius: 2rem;
@@ -117,6 +137,7 @@ textarea {
     height: 3rem;
     width: 3rem;
 }
+
 .pad {
     grid-area: pad;
     grid-row: 1;
@@ -128,10 +149,12 @@ textarea {
     flex-direction: column;
     row-gap: 1rem;
 }
+
 .pad-header {
     display: flex;
     height: 2rem;
 }
+
 .pad-title:focus {
     background-color: var(--pink10);
 }
@@ -142,96 +165,129 @@ textarea {
 .ai-c {
     align-items: center;
 }
+
 /* align self */
 .as-c {
     align-self: center;
 }
+.as-l {
+    align-self: left;
+}
+
 /* background */
 .bgc-n {
     background-color: rgba(0, 0, 0, 0);
 }
+
 /* border */
 .b-n {
     border: none;
 }
+
 .b-1 {
     border: 0.1rem solid #666262;
 }
+
 /* border radius */
 .br-0-5 {
     border-radius: 0.5rem;
 }
+
 /* color */
 .c-p {
     color: var(--pink);
 }
+
 /* column-gap */
 .cg-0-3 {
     column-gap: 0.3rem;
 }
+
 /* display */
 .d-b {
     display: block;
 }
+
 .d-f {
     display: flex;
 }
+
 /* font size */
 .fs-0-7 {
     font-size: 0.7rem;
 }
+
 .fs-1-1 {
     font-size: 1.1rem;
 }
+
 /* font weight */
 .fw-b {
     font-weight: bold;
 }
+
 /* height */
 .h-fc {
     height: fit-content;
 }
+
 .h-90 {
     height: 90%;
 }
+
 .h-100 {
     height: 100%;
 }
+
 /* hover color */
 .h-c-s:hover {
     color: var(--pinkLight);
 }
+
 /* hover cursor */
 .h-cu-p:hover {
     cursor: pointer;
 }
+
 /* justify content */
 .jc-sb {
     justify-content: space-between;
 }
+
 /* letter spacing */
 .ls-0-01 {
     letter-spacing: 0.01rem;
 }
+
 /* margin */
 .ml-a {
     margin-left: auto;
 }
+.mr-a {
+    margin-right: auto;
+}
+
 /* outline */
 .o-n {
     outline: none;
 }
+
 /* overflow-wrap */
 .ow-a {
     overflow-wrap: anywhere;
 }
+
 /* padding */
 .p-1 {
     padding: 1rem;
 }
+
 /* text align */
 .ta-c {
     text-align: center;
+}
+.ta-l {
+    text-align: left;
 }
 /* vertical align */
 
@@ -239,9 +295,11 @@ textarea {
 .w-70 {
     width: 70%;
 }
+
 .w-100 {
     width: 100%;
 }
+
 .w-fc {
     width: fit-content;
 }

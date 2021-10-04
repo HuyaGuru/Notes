@@ -13,20 +13,19 @@ function Pad(props) {
                     <img src={backIcon} alt="back" />
                     <span>Back</span>
                 </button>
-                <input
-                    className="pad-title ml-a bgc-n b-n o-n ta-c c-p fs-1-1 fw-b ls-0-01 br-0-5"
-                    value={props.title}
-                ></input>
+                <div
+                    className="pad-title ml-a mr-a bgc-n b-n o-n ta-c c-p fs-1-1 fw-b ls-0-01 br-0-5"
+                >{props.title}</div>
             </div>
             <div className="h-90">
-                <textarea
+                <div
                     className="w-100 bgc-n b-1 c-p h-100 o-n br-0-5 p-1"
-                    value={props.text}
-                ></textarea>
+                >{props.text}</div>
             </div>
             <div className="bottom">
                     <button
                         className="button-circle h-cu-p"
+                        onClick={props.handleEditClick}
                     >
                         <img src={editIcon} alt="edit" />
                     </button>
