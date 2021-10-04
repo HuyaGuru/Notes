@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { cardListFunc } from "../features/cardList/cardListSlice";
 
@@ -14,6 +14,7 @@ import "./App.css";
 
 function App() {
 	const cards = useSelector(cardListFunc);
+	const dispatch = useDispatch();
 
 	const [padShow, setPadShow] = useState(false);
 	const [padEditableShow, setPadEditableShow] = useState(false);
@@ -21,22 +22,18 @@ function App() {
 	const [edit, setEdit] = useState(false);
 
 	const padEditableTextRef = useRef();
-	const padEditableTitleRef = useRef()
 
 	useEffect(() => {
 		padEditableTextRef.current.focus();
 	}, [padEditableShow]);
-	useEffect(() => {
-		padEditableTextRef.current.defaultValue = cards[currentCard].text;
-		padEditableTitleRef.current.defaultValue = cards[currentCard].title;
-	}, [edit,cards,currentCard]);
 
 	const handlePadShow = (e) => {
 		setCurrentCard(e.target.dataset.index);
 		setPadEditableShow(false);
 		setPadShow(true);
 	};
-	const handlePadEditableClick = () => {
+	const handleAddClick = () => {
+		setCurrentCard(0);
 		setPadEditableShow(true);
 		setPadShow(false);
 	};
@@ -44,6 +41,7 @@ function App() {
 		setPadShow(false);
 	};
 	const handlePadEditableHide = () => {
+		setEdit(false);
 		setPadEditableShow(false);
 	};
 	const handlePadEditClick = () => {
@@ -64,20 +62,24 @@ function App() {
 						<img src={deleteIcon} alt="delete" />
 					</button>
 				</div>
-				{cards.map((x, index) => (
-					<Card
-						title={x.title}
-						date={x.date}
-						handleCardClick={handlePadShow}
-						index={index}
-						key={index}
-					/>
-				))}
+				{cards.map((x, index) => {
+					if (index > 0) {
+						return (
+							<Card
+								title={x.title}
+								date={x.date}
+								handleCardClick={handlePadShow}
+								index={index}
+								key={index}
+							/>
+						);
+					}
+					else{
+						return null
+					}
+				})}
 				<div className="bottom">
-					<button
-						className="button-circle"
-						onClick={handlePadEditableClick}
-					>
+					<button className="button-circle" onClick={handleAddClick}>
 						<img src={addIcon} alt="new" />
 					</button>
 				</div>
@@ -93,7 +95,9 @@ function App() {
 				displayClass={displayPadEditableClass}
 				handlePadHide={handlePadEditableHide}
 				textRef={padEditableTextRef}
-				titleRef={padEditableTitleRef}
+				dispatch={dispatch}
+				edit={edit}
+				index={currentCard}
 			/>
 		</div>
 	);

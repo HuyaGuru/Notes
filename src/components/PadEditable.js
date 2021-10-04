@@ -1,15 +1,38 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-import { push } from "../features/cardList/cardListSlice";
+import { push, replace, cardListFunc } from "../features/cardList/cardListSlice";
 
 import backIcon from "../assests/arrow_back_ios_black_24dp 1.svg";
 import doneIcon from "../assests/done_white_24dp 1.svg";
+import { useSelector } from "react-redux";
 
 function PadEditable(props) {
+	const cards = useSelector(cardListFunc);
 
-	const [padTitle, setPadTitle] = useState();
-	const [padText, setPadText] = useState("");
+	const [padTitle, setPadTitle] = useState(cards[props.index].title);
+	const [padText, setPadText] = useState(cards[props.index].text);
 
+	useEffect(()=> {
+		setPadTitle(cards[props.index].title)
+		setPadText(cards[props.index].text)
+	},[cards, props.index])
+
+	const handleOnClick = () => {
+		if (props.edit) {
+			props.dispatch(
+				replace({
+					index: props.index,
+					title: padTitle,
+					text: padText,
+					date: date,
+				})
+			);
+		} else {
+			props.dispatch(
+				push({ title: padTitle, date: date, text: padText })
+			);
+		}
+	};
 	const handleTitleChange = (e) => {
 		setPadTitle(e.target.value);
 	};
@@ -35,17 +58,12 @@ function PadEditable(props) {
 				</button>
 				<input
 					className="pad-title ml-a bgc-n b-n o-n ta-c c-p fs-1-1 fw-b ls-0-01 br-0-5"
-					defaultValue=""
 					onChange={handleTitleChange}
-					ref={props.titleRef}
+					value={padTitle}
 				></input>
 				<button
 					className="ml-a d-f ai-c bgc-n c-p fs-1-1 h-c-s cg-0-3"
-					onClick={() =>
-						props.dispatch(
-							push({ title: padTitle, date: date, text: padText })
-						)
-					}
+					onClick={handleOnClick}
 				>
 					<span>Done</span>
 					<img src={doneIcon} alt="done" />
@@ -54,8 +72,8 @@ function PadEditable(props) {
 			<div className="h-90">
 				<textarea
 					ref={props.textRef}
-					defaultValue=""
 					className="w-100 bgc-n b-1 c-p h-100 o-n br-0-5 p-1"
+					value={padText}
 					onChange={handlePadTextChange}
 				></textarea>
 			</div>
