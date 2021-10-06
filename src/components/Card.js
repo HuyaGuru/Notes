@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-import './Card.css'
+import "./Card.css";
 
 function Card(props) {
 	const displayDate = new Date(props.date).toDateString().substr(4);
@@ -12,12 +12,6 @@ function Card(props) {
 	};
 	return (
 		<div className="card">
-			<div
-				className="card-date fw-b fs-0-7 h-cu-p"
-				data-index={props.index}
-			>
-				{displayDate}
-			</div>
 			<div className="d-f w-100">
 				<input
 					type="checkbox"
@@ -33,6 +27,12 @@ function Card(props) {
 				>
 					{props.title}
 				</button>
+			</div>
+			<div
+				className="card-date fw-b fs-0-7 h-cu-p"
+				data-index={props.index}
+			>
+				{displayDate}
 			</div>
 		</div>
 	);

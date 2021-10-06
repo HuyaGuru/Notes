@@ -8,18 +8,15 @@
 	align-items: center;
 	column-gap: 0.8rem;
     height: fit-content;
-	flex-direction: column;
 }
 
 .card-title {
-    width: 100%;
 	font-size: 1rem;
 	font-weight: 700;
     text-align: left;
 }
 
 .card-date {
-	width: 100%;
 	font-style: italic;
 	text-align: right;
 }
