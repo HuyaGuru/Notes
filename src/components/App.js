@@ -16,7 +16,6 @@ import "./App.css";
 function App() {
 	const cards = useSelector(cardListFunc);
 	const currCard = useSelector(currentCardFunc);
-	console.log(currCard)
 	const dispatch = useDispatch();
 
 	const [padShow, setPadShow] = useState(false);
@@ -60,7 +59,6 @@ function App() {
 		setPadEditableShow(false)
 		setPadShow(true)
 	}
-	console.log(checkList)
 	const handleDeleteClick = () => {
 		const sortedCheckList = checkList.slice()
 		sortedCheckList.sort()
