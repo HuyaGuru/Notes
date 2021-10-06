@@ -1,21 +1,24 @@
 import { useEffect, useState } from "react";
 
-import { push, replace, cardListFunc } from "../features/cardList/cardListSlice";
+import {
+	push,
+	replace,
+	cardListFunc,
+} from "../features/cardList/cardListSlice";
 
 import backIcon from "../assests/arrow_back_ios_black_24dp 1.svg";
 import doneIcon from "../assests/done_white_24dp 1.svg";
 import { useSelector } from "react-redux";
+import { setCurrentCard } from "../features/currentCard";
 
-function PadEditable(props) {
+const PadEditable = (props) => {
 	const cards = useSelector(cardListFunc);
-
 	const [padTitle, setPadTitle] = useState(cards[props.index].title);
 	const [padText, setPadText] = useState(cards[props.index].text);
-
-	useEffect(()=> {
-		setPadTitle(cards[props.index].title)
-		setPadText(cards[props.index].text)
-	},[cards, props.index])
+	useEffect(() => {
+		setPadTitle(cards[props.index].title);
+		setPadText(cards[props.index].text);
+	}, [cards, props.index]);
 
 	const handleOnClick = () => {
 		if (props.edit) {
@@ -31,8 +34,9 @@ function PadEditable(props) {
 			props.dispatch(
 				push({ title: padTitle, date: date, text: padText })
 			);
+			props.dispatch(setCurrentCard(cards.length));
 		}
-		props.handleDoneClick()
+		props.handleDoneClick();
 	};
 	const handleTitleChange = (e) => {
 		setPadTitle(e.target.value);

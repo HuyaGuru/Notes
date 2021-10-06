@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { cardListFunc, splice } from "../features/cardList/cardListSlice";
+import { currentCardFunc, setCurrentCard } from "../features/currentCard";
 
 import Card from "./Card";
 import Pad from "./Pad";
@@ -14,11 +15,11 @@ import "./App.css";
 
 function App() {
 	const cards = useSelector(cardListFunc);
+	const currCard = useSelector(currentCardFunc);
 	const dispatch = useDispatch();
 
 	const [padShow, setPadShow] = useState(false);
 	const [padEditableShow, setPadEditableShow] = useState(false);
-	const [currentCard, setCurrentCard] = useState(0);
 	const [edit, setEdit] = useState(false);
 	const [checkList, setCheckList] = useState([])
 
@@ -107,8 +108,8 @@ function App() {
 			<Pad
 				displayClass={displayPadClass}
 				handlePadHide={handlePadHide}
-				title={cards[currentCard].title}
-				text={cards[currentCard].text}
+				title={cards[currCard].title}
+				text={cards[currCard].text}
 				handleEditClick={handlePadEditClick}
 			/>
 			<PadEditable
@@ -117,7 +118,7 @@ function App() {
 				textRef={padEditableTextRef}
 				dispatch={dispatch}
 				edit={edit}
-				index={currentCard}
+				index={currCard}
 				handleDoneClick={handleDoneClick}
 			/>
 		</div>
