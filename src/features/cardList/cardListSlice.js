@@ -4,9 +4,9 @@ export const cardListSlice = createSlice({
     name: "cardList",
     initialState: [
         {title: "Untitled", text:""},
-        { title: "Bio Class", date: [2021, 9, 17], text: "BioClass" },
-        { title: "Groceries", date: [2021, 9, 16], text: "Groceries" },
-        { title: "Movies", date: [2021, 9, 15], text: "Movies" },
+        { title: "Bio Class", date: [2021, 9, 17], text: "Plants do photosynthesis - i'm weak in bio." },
+        { title: "Groceries", date: [2021, 9, 16], text: "1kg Tomatoes\n1kg Onions" },
+        { title: "Movies", date: [2021, 9, 15], text: "Godzilla: King of Monsters" },
     ],
     reducers: {
         push: (state, action) => {
