@@ -16,12 +16,14 @@ import "./App.css";
 function App() {
 	const cards = useSelector(cardListFunc);
 	const currCard = useSelector(currentCardFunc);
+	console.log(currCard)
 	const dispatch = useDispatch();
 
 	const [padShow, setPadShow] = useState(false);
 	const [padEditableShow, setPadEditableShow] = useState(false);
 	const [edit, setEdit] = useState(false);
 	const [checkList, setCheckList] = useState([])
+	const [reset, setReset] = useState(false)
 
 	const padEditableTextRef = useRef();
 
@@ -30,12 +32,12 @@ function App() {
 	}, [padEditableShow]);
 
 	const handlePadShow = (e) => {
-		setCurrentCard(e.target.dataset.index);
+		dispatch(setCurrentCard(e.target.dataset.index));
 		setPadEditableShow(false);
 		setPadShow(true);
 	};
 	const handleAddClick = () => {
-		setCurrentCard(0);
+		dispatch(setCurrentCard(0));
 		setPadEditableShow(true);
 		setPadShow(false);
 	};
@@ -58,11 +60,17 @@ function App() {
 		setPadEditableShow(false)
 		setPadShow(true)
 	}
+	console.log(checkList)
 	const handleDeleteClick = () => {
 		const sortedCheckList = checkList.slice()
 		sortedCheckList.sort()
-		console.log(sortedCheckList)
 		dispatch(splice({pos:sortedCheckList[0],length:sortedCheckList.length}))
+		setCheckList([])
+		if(sortedCheckList.indexOf(currCard) !== null){
+			setPadShow(false)
+		}
+		dispatch(setCurrentCard(0))
+		setReset(true)
 	}
 
 	const displayPadClass = padShow ? "d-f" : "";
@@ -89,6 +97,8 @@ function App() {
 								key={index}
 								setCheckList={setCheckList}
 								checkList={checkList}
+								reset={reset}
+								setReset={setReset}
 							/>
 						);
 					} else {

@@ -1,13 +1,26 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 import "./Card.css";
 
 function Card(props) {
 	const displayDate = new Date(props.date).toDateString().substr(4);
 	const checkboxRef = useRef();
+
+	useEffect(() => {
+		if(props.reset){
+			checkboxRef.current.checked = false;
+			props.setReset(false)
+		}
+	})
+
 	const handleCheckboxClick = () => {
 		if (checkboxRef.current.checked) {
 			props.setCheckList([...props.checkList, props.index]);
+		} else {
+			const tempCheckList = props.checkList.slice();
+			const toBeRemoved = tempCheckList.indexOf(props.index);
+			tempCheckList.splice(toBeRemoved, 1);
+			props.setCheckList(tempCheckList);
 		}
 	};
 	return (
