@@ -7,11 +7,11 @@ function Card(props) {
 	const checkboxRef = useRef();
 
 	useEffect(() => {
-		if(props.reset){
+		if (props.reset) {
 			checkboxRef.current.checked = false;
-			props.setReset(false)
+			props.setReset(false);
 		}
-	})
+	});
 
 	const handleCheckboxClick = () => {
 		if (checkboxRef.current.checked) {
@@ -25,21 +25,22 @@ function Card(props) {
 	};
 	return (
 		<div className="card">
-			<div className="d-f w-100">
+			<div className="d-f w-100 ai-c ">
 				<input
 					type="checkbox"
 					id={props.index}
-					name="selectiion"
 					ref={checkboxRef}
 					onClick={handleCheckboxClick}
 				/>
-				<button
-					className="card-title ow-a w-70 h-cu-p"
-					onClick={props.handleCardClick}
-					data-index={props.index}
-				>
-					{props.title}
-				</button>
+				<label for={props.index} className="w-100">
+					<button
+						className="card-title ow-a w-70 h-cu-p"
+						onClick={props.handleCardClick}
+						data-index={props.index}
+					>
+						{props.title}
+					</button>
+				</label>
 			</div>
 			<div
 				className="card-date fw-b fs-0-7 h-cu-p"
