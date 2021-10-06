@@ -34,7 +34,7 @@ function Card(props) {
 				/>
 				<label for={props.index} className="w-100">
 					<button
-						className="card-title ow-a w-70 h-cu-p"
+						className="card-title ow-a w-100 h-cu-p"
 						onClick={props.handleCardClick}
 						data-index={props.index}
 					>
