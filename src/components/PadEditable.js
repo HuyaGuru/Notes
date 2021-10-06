@@ -32,6 +32,7 @@ function PadEditable(props) {
 				push({ title: padTitle, date: date, text: padText })
 			);
 		}
+		props.handleDoneClick()
 	};
 	const handleTitleChange = (e) => {
 		setPadTitle(e.target.value);
@@ -47,7 +48,7 @@ function PadEditable(props) {
 	const date = giveDate();
 
 	return (
-		<div className={`pad ${props.displayClass}`}>
+		<div className={`pad ${props.displayClass} bgc-custom`}>
 			<div className="pad-header">
 				<button
 					className="d-f ai-c bgc-n c-p fs-1-1 h-c-s h-cu-p"

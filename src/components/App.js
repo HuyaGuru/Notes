@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { cardListFunc } from "../features/cardList/cardListSlice";
+import { cardListFunc, splice } from "../features/cardList/cardListSlice";
 
 import Card from "./Card";
 import Pad from "./Pad";
@@ -20,6 +20,7 @@ function App() {
 	const [padEditableShow, setPadEditableShow] = useState(false);
 	const [currentCard, setCurrentCard] = useState(0);
 	const [edit, setEdit] = useState(false);
+	const [checkList, setCheckList] = useState([])
 
 	const padEditableTextRef = useRef();
 
@@ -49,6 +50,19 @@ function App() {
 		setPadShow(false);
 		setPadEditableShow(true);
 	};
+	const handleDoneClick = () => {
+		if(edit){
+			setEdit(false)
+		}
+		setPadEditableShow(false)
+		setPadShow(true)
+	}
+	const handleDeleteClick = () => {
+		const sortedCheckList = checkList.slice()
+		sortedCheckList.sort()
+		console.log(sortedCheckList)
+		dispatch(splice({pos:sortedCheckList[0],length:sortedCheckList.length}))
+	}
 
 	const displayPadClass = padShow ? "d-f" : "";
 	const displayPadEditableClass = padEditableShow ? "d-f" : "";
@@ -58,10 +72,11 @@ function App() {
 			<div className="nav">
 				<div className="top">
 					<div className="Brand">notes</div>
-					<button className="top-delete">
+					<button className={`top-delete d-b`} onClick={handleDeleteClick}>
 						<img src={deleteIcon} alt="delete" />
 					</button>
 				</div>
+				<div className="cards">
 				{cards.map((x, index) => {
 					if (index > 0) {
 						return (
@@ -71,15 +86,20 @@ function App() {
 								handleCardClick={handlePadShow}
 								index={index}
 								key={index}
+								setCheckList={setCheckList}
+								checkList={checkList}
 							/>
 						);
-					}
-					else{
-						return null
+					} else {
+						return null;
 					}
 				})}
+				</div>
 				<div className="bottom">
-					<button className="button-circle h-cu-p" onClick={handleAddClick}>
+					<button
+						className="button-circle h-cu-p"
+						onClick={handleAddClick}
+					>
 						<img src={addIcon} alt="new" />
 					</button>
 				</div>
@@ -98,6 +118,7 @@ function App() {
 				dispatch={dispatch}
 				edit={edit}
 				index={currentCard}
+				handleDoneClick={handleDoneClick}
 			/>
 		</div>
 	);

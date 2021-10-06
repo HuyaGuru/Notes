@@ -4,10 +4,10 @@ import editIcon from "../assests/edit_white_24dp 1.svg";
 function Pad(props) {
 
     return (
-        <div className={`pad ${props.displayClass}`}>
+        <div className={`pad ${props.displayClass} bgc-custom`}>
             <div className="pad-header">
                 <button
-                    className="d-f ai-c bgc-n c-p fs-1-1 h-c-s h-cu-p"
+                    className="d-f ai-c c-p fs-1-1 h-c-s h-cu-p"
                     onClick={props.handlePadHide}
                 >
                     <img src={backIcon} alt="back" />

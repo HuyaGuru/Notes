@@ -84,6 +84,7 @@ textarea {
 
 .top-delete {
 	margin-left: auto;
+	display: none;
 }
 
 .divider {
@@ -103,28 +104,10 @@ textarea {
 	height: 1rem;
 	width: 100%;
 }
-
-.card {
-	margin: 0.5rem;
-	padding: 0.5rem;
-	background-color: var(--pink);
-	border-radius: 10px;
-	box-shadow: 0.5rem 0.5rem var(--pink10);
+.cards {
 	display: flex;
-	align-items: center;
-	column-gap: 0.8rem;
+	flex-direction: column;
 }
-
-.card-title {
-	font-size: 1rem;
-	font-weight: 700;
-}
-
-.card-date {
-	font-style: italic;
-	text-align: right;
-}
-
 .bottom {
 	margin: auto 1rem 1rem auto;
 	z-index: 2;
@@ -162,6 +145,51 @@ textarea {
 .pad-title:focus {
 	background-color: var(--pink10);
 }
+/* media queries */
+@media screen and (max-width: 324px){
+	.nav {
+		width: 100vw;
+		z-index: 2;
+	}
+	.cards {
+		flex-direction: column;
+	}
+	.pad {
+		grid-column-start: 1;
+		width: 100vw;
+		z-index: 3;
+	}
+	.button-circle {
+		z-index:4;
+	}
+}
+@media screen and (min-width:324px) and (max-width: 425px){
+	.nav {
+		width: 100vw;
+		z-index: 2;
+	}
+	.cards {
+		column-count: 2;
+		flex-wrap: wrap;
+		flex-direction: row;
+	}
+	.pad {
+		grid-column-start: 1;
+		width: 100vw;
+		z-index: 3;
+	}
+	.button-circle {
+		z-index:4;
+	}
+}
+@media screen and (min-width:425px) and (max-width: 768px){
+	.main-grid {
+		grid-template-columns: 1fr 2fr;
+	}
+	.cards {
+		grid-template-columns:1fr;
+	}
+}
 
 /* utility classes */
 
@@ -178,9 +206,15 @@ textarea {
 	align-self: left;
 }
 
-/* background */
+/* background-color */
 .bgc-n {
 	background-color: rgba(0, 0, 0, 0);
+}
+.bgc-g {
+	background-color: var(--greyBackground);
+}
+.bgc-custom {
+	background-color: #413d41;
 }
 
 /* border */

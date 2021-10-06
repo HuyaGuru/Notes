@@ -12,8 +12,8 @@ export const cardListSlice = createSlice({
         push: (state, action) => {
             state.push(action.payload);
         },
-        pop: (state, action) => {
-            state.pop(action.payload);
+        splice: (state, action) => {
+            state.splice(action.payload.pos, action.payload.length);
         },
         replace: (state, action) => {
             state[action.payload.index] = {
@@ -25,7 +25,7 @@ export const cardListSlice = createSlice({
     },
 });
 
-export const { push, pop, replace } = cardListSlice.actions;
+export const { push, splice, replace } = cardListSlice.actions;
 
 export const cardListFunc = (state) => state.cardList;
 
