@@ -26,14 +26,13 @@ function Card(props) {
 	return (
 		<div className="card">
 			<div className="d-f w-100 ai-c ">
-				<input
-					type="checkbox"
-					className="w-48p h-48p"
-					id={props.index}
-					ref={checkboxRef}
-					onClick={handleCheckboxClick}
-				/>
-				<label for={props.index} className="w-100">
+					<input
+						type="checkbox"
+						id={props.index}
+						ref={checkboxRef}
+						onClick={handleCheckboxClick}
+					/>
+				<label htmlFor={props.index} className="w-100">
 					<button
 						className="card-title ow-a w-100 h-cu-p"
 						onClick={props.handleCardClick}

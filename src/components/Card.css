@@ -7,34 +7,27 @@
 	display: flex;
 	align-items: center;
 	column-gap: 0.8rem;
-    height: fit-content;
+	height: fit-content;
 }
 
 .card-title {
 	font-size: 1rem;
 	font-weight: 700;
-    text-align: left;
+	text-align: left;
 }
 
 .card-date {
 	font-style: italic;
 	text-align: right;
 }
-@media screen and (max-width: 324px){
-	
+@media screen and (max-width: 324px) {
 	.card {
 		width: auto;
 	}
 }
-@media screen and (min-width:324px) and (max-width: 425px) {
-    .card {
-        width: 45vw;
-    }
+@media screen and (min-width: 324px) and (max-width: 425px) {
+	.card {
+		width: 45vw;
+	}
 }
 /* utility classes */
-.w-48p{
-	width: 48px;
-}
-.h-48p{
-	height: 48px;
-}
