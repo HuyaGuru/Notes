@@ -43,7 +43,7 @@ function Card(props) {
 				</label>
 			</div>
 			<div
-				className="card-date fw-b fs-0-7 h-cu-p"
+				className="card-date fw-b fs-0-8 h-cu-p"
 				data-index={props.index}
 			>
 				{displayDate}
