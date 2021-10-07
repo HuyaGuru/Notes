@@ -31,3 +31,10 @@
         width: 45vw;
     }
 }
+/* utility classes */
+.w-48p{
+	width: 48px;
+}
+.h-48p{
+	height: 48px;
+}

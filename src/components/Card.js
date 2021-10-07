@@ -28,6 +28,7 @@ function Card(props) {
 			<div className="d-f w-100 ai-c ">
 				<input
 					type="checkbox"
+					className="w-48p h-48p"
 					id={props.index}
 					ref={checkboxRef}
 					onClick={handleCheckboxClick}
