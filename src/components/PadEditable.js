@@ -61,11 +61,11 @@ const PadEditable = (props) => {
 					<img src={backIcon} alt="back" />
 					<span>Back</span>
 				</button>
-				<input
+				<textarea
 					className="pad-title ml-a bgc-n b-n o-n ta-c c-p fs-1-1 fw-b ls-0-01 br-0-5"
 					onChange={handleTitleChange}
 					value={padTitle}
-				></input>
+				></textarea>
 				<button
 					className="ml-a d-f ai-c bgc-n c-p fs-1-1 h-c-s cg-0-3 h-cu-p"
 					onClick={handleOnClick}
