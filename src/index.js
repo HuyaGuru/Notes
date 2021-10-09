@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import { Provider } from 'react-redux';
 import store from "./app/store"
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 import App from './components/App';
 
@@ -14,3 +15,4 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
+serviceWorkerRegistration.unregister();
