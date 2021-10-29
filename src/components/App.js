@@ -21,8 +21,8 @@ function App() {
 	const [padShow, setPadShow] = useState(false);
 	const [padEditableShow, setPadEditableShow] = useState(false);
 	const [edit, setEdit] = useState(false);
-	const [checkList, setCheckList] = useState([])
-	const [reset, setReset] = useState(false)
+	const [checkList, setCheckList] = useState([]);
+	const [reset, setReset] = useState(false);
 
 	const padEditableTextRef = useRef();
 
@@ -53,23 +53,41 @@ function App() {
 		setPadEditableShow(true);
 	};
 	const handleDoneClick = () => {
-		if(edit){
-			setEdit(false)
+		if (edit) {
+			setEdit(false);
 		}
-		setPadEditableShow(false)
-		setPadShow(true)
-	}
+		setPadEditableShow(false);
+		setPadShow(true);
+	};
 	const handleDeleteClick = () => {
-		const sortedCheckList = checkList.slice()
-		sortedCheckList.sort()
-		dispatch(splice({pos:sortedCheckList[0],length:sortedCheckList.length}))
-		setCheckList([])
-		if(sortedCheckList.indexOf(currCard) !== null){
-			setPadShow(false)
+		const sortedCheckList = checkList.slice();
+		sortedCheckList.sort();
+		dispatch(
+			splice({ pos: sortedCheckList[0], length: sortedCheckList.length })
+		);
+		setCheckList([]);
+		if (sortedCheckList.indexOf(currCard) !== null) {
+			setPadShow(false);
 		}
-		dispatch(setCurrentCard(0))
-		setReset(true)
-	}
+		dispatch(setCurrentCard(0));
+		setReset(true);
+	};
+	let deferredEvent = useRef();
+	useEffect(() => {
+		window.addEventListener("beforeinstallprompt", (e) => {
+			deferredEvent.current = e;
+			console.log(deferredEvent.current);
+		});
+	});
+	const handleInstallClick = async () => {
+		if (deferredEvent.current !== null) {
+			deferredEvent.current.prompt();
+			const { outcome } = await deferredEvent.current.userChoice;
+			if (outcome === "accepted") {
+				deferredEvent.current = null;
+			}
+		}
+	};
 
 	const displayPadClass = padShow ? "d-f" : "";
 	const displayPadEditableClass = padEditableShow ? "d-f" : "";
@@ -78,31 +96,40 @@ function App() {
 		<div className="main-grid">
 			<div className="nav">
 				<div className="top">
-					<div className="Brand">notes</div>
-					<button className={`top-delete d-b`} onClick={handleDeleteClick}>
+					<span className="Brand">notes</span>
+					<button
+						className="install-button h-cu-p"
+						onClick={handleInstallClick}
+					>
+						install
+					</button>
+					<button
+						className={`top-delete d-b`}
+						onClick={handleDeleteClick}
+					>
 						<img src={deleteIcon} alt="delete" />
 					</button>
 				</div>
 				<div className="cards">
-				{cards.map((x, index) => {
-					if (index > 0) {
-						return (
-							<Card
-								title={x.title}
-								date={x.date}
-								handleCardClick={handlePadShow}
-								index={index}
-								key={index}
-								setCheckList={setCheckList}
-								checkList={checkList}
-								reset={reset}
-								setReset={setReset}
-							/>
-						);
-					} else {
-						return null;
-					}
-				})}
+					{cards.map((x, index) => {
+						if (index > 0) {
+							return (
+								<Card
+									title={x.title}
+									date={x.date}
+									handleCardClick={handlePadShow}
+									index={index}
+									key={index}
+									setCheckList={setCheckList}
+									checkList={checkList}
+									reset={reset}
+									setReset={setReset}
+								/>
+							);
+						} else {
+							return null;
+						}
+					})}
 				</div>
 				<div className="bottom">
 					<button
