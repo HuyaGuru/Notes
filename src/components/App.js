@@ -19,16 +19,16 @@ import deleteIcon from "../assests/delete_white_50.svg";
 import "./App.css";
 
 const App = () => {
-	const cards		= useSelector(cardListFunc);
+	const cards = useSelector(cardListFunc);
 	const currCard  = useSelector(currentCardFunc);
 
 	const dispatch = useDispatch();
 
-	const [padShow, setPadShow] 				= useState(false);
+	const [padShow, setPadShow] = useState(false);
 	const [padEditableShow, setPadEditableShow] = useState(false);
-	const [edit, setEdit] 						= useState(false);
-	const [checkList, setCheckList] 			= useState([]);
-	const [reset, setReset] 					= useState(false);
+	const [edit, setEdit] = useState(false);
+	const [checkList, setCheckList] = useState([]);
+	const [reset, setReset] = useState(false);
 
 	const padEditableTextRef = useRef();
 	const deferredEvent 	 = useRef();
@@ -92,6 +92,7 @@ const App = () => {
 		navigator.userAgent.includes("Mobile")
 			? "Firefox Mobile"
 			: "";
+	console.log(platform)
 	const handleInstallClick = async () => {
 		if (platform === "Firefox Mobile") {
 			window.alert(
