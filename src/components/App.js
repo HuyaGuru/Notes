@@ -1,30 +1,38 @@
+// imports from libraries
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+// custom redux imports
 import { cardListFunc, splice } from "../features/cardList/cardListSlice";
 import { currentCardFunc, setCurrentCard } from "../features/currentCard";
 
+// custom react component imports
 import Card from "./Card";
 import Pad from "./Pad";
 import PadEditable from "./PadEditable";
 
+// icons
 import addIcon from "../assests/add_black_24dp 1.svg";
 import deleteIcon from "../assests/delete_white_50.svg";
 
+// stylesheet
 import "./App.css";
 
-function App() {
-	const cards = useSelector(cardListFunc);
-	const currCard = useSelector(currentCardFunc);
+const App = () => {
+	const cards		= useSelector(cardListFunc);
+	const currCard  = useSelector(currentCardFunc);
+
 	const dispatch = useDispatch();
 
-	const [padShow, setPadShow] = useState(false);
+	const [padShow, setPadShow] 				= useState(false);
 	const [padEditableShow, setPadEditableShow] = useState(false);
-	const [edit, setEdit] = useState(false);
-	const [checkList, setCheckList] = useState([]);
-	const [reset, setReset] = useState(false);
+	const [edit, setEdit] 						= useState(false);
+	const [checkList, setCheckList] 			= useState([]);
+	const [reset, setReset] 					= useState(false);
 
 	const padEditableTextRef = useRef();
+	const deferredEvent 	 = useRef();
+	const installButton 	 = useRef();
 
 	useEffect(() => {
 		padEditableTextRef.current.focus();
@@ -72,8 +80,7 @@ function App() {
 		dispatch(setCurrentCard(0));
 		setReset(true);
 	};
-	let deferredEvent = useRef();
-	let installButton = useRef();
+	
 	useEffect(() => {
 		window.addEventListener("beforeinstallprompt", (e) => {
 			deferredEvent.current = e;
@@ -171,6 +178,6 @@ function App() {
 			/>
 		</div>
 	);
-}
+};
 
 export default App;
