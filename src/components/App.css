@@ -148,6 +148,7 @@ textarea {
 }
 .pad-title {
 	height: 100%;
+	width: 60%;
 }
 .pad-title:focus {
 	background-color: var(--pink10);
