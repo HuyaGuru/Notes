@@ -76,7 +76,6 @@ function App() {
 	useEffect(() => {
 		window.addEventListener("beforeinstallprompt", (e) => {
 			deferredEvent.current = e;
-			console.log(deferredEvent.current);
 		});
 	});
 	const handleInstallClick = async () => {
@@ -87,10 +86,15 @@ function App() {
 				deferredEvent.current = null;
 			}
 		}
+		if (platform==="Firefox Mobile") {
+			window.alert("Looks like you are using Firefox Mobile. Sorry, this browser isn't supported for this feature.\nYou can follow these steps to do the same:\n1. Go to options menu on the right side of the url bar.\n2. there you would see an 'install' button, press it\n3. done!")
+		}
 	};
 
+	const platform = navigator.userAgent.includes("Firefox") && navigator.userAgent.includes("Mobile") ? "Firefox Mobile" : ""
 	const displayPadClass = padShow ? "d-f" : "";
 	const displayPadEditableClass = padEditableShow ? "d-f" : "";
+	const displayInstallButton = deferredEvent.current !== null ? "d-b" : "";
 
 	return (
 		<div className="main-grid">
@@ -98,7 +102,7 @@ function App() {
 				<div className="top">
 					<span className="Brand">notes</span>
 					<button
-						className="install-button h-cu-p"
+						className={`install-button h-cu-p ${displayInstallButton}`}
 						onClick={handleInstallClick}
 					>
 						install
