@@ -73,28 +73,37 @@ function App() {
 		setReset(true);
 	};
 	let deferredEvent = useRef();
+	let installButton = useRef();
 	useEffect(() => {
 		window.addEventListener("beforeinstallprompt", (e) => {
 			deferredEvent.current = e;
+			installButton.current = true;
 		});
 	});
+	const platform =
+		navigator.userAgent.includes("Firefox") &&
+		navigator.userAgent.includes("Mobile")
+			? "Firefox Mobile"
+			: "";
 	const handleInstallClick = async () => {
 		if (deferredEvent.current !== null) {
 			deferredEvent.current.prompt();
 			const { outcome } = await deferredEvent.current.userChoice;
 			if (outcome === "accepted") {
 				deferredEvent.current = null;
+				installButton.current = false;
 			}
 		}
-		if (platform==="Firefox Mobile") {
-			window.alert("Looks like you are using Firefox Mobile. Sorry, this browser isn't supported for this feature.\nYou can follow these steps to do the same:\n1. Go to options menu on the right side of the url bar.\n2. there you would see an 'install' button, press it\n3. done!")
+		if (platform === "Firefox Mobile") {
+			window.alert(
+				"Looks like you are using Firefox Mobile. Sorry, this browser isn't supported for this feature.\nYou can follow these steps to do the same:\n1. Go to options menu on the right side of the url bar.\n2. there you would see an 'install' button, press it\n3. done!"
+			);
 		}
 	};
 
-	const platform = navigator.userAgent.includes("Firefox") && navigator.userAgent.includes("Mobile") ? "Firefox Mobile" : ""
 	const displayPadClass = padShow ? "d-f" : "";
 	const displayPadEditableClass = padEditableShow ? "d-f" : "";
-	const displayInstallButton = deferredEvent.current !== null ? "d-b" : "";
+	const displayInstallButton = installButton.current ? "d-b" : "";
 
 	return (
 		<div className="main-grid">
