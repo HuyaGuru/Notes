@@ -19,6 +19,7 @@ import deleteIcon from "../assests/delete_white_50.svg";
 import "./App.css";
 
 const App = () => {
+
 	const cards	= useSelector(cardListFunc);
 	const currCard  = useSelector(currentCardFunc);
 
@@ -92,6 +93,7 @@ const App = () => {
 		navigator.userAgent.includes("Mobile")
 			? "Firefox Mobile"
 			: "";
+	console.log(navigator.userAgent)
 	const handleInstallClick = async () => {
 		if (platform === "Firefox Mobile") {
 			window.alert(
