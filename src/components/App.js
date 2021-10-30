@@ -19,7 +19,8 @@ import deleteIcon from "../assests/delete_white_50.svg";
 import "./App.css";
 
 const App = () => {
-	const cards = useSelector(cardListFunc);
+
+	const cards	= useSelector(cardListFunc);
 	const currCard  = useSelector(currentCardFunc);
 
 	const dispatch = useDispatch();
