@@ -95,6 +95,7 @@ const App = () => {
 		navigator.userAgent.includes("Mobile")
 			? "Firefox Mobile"
 			: "";
+	console.log(navigator.userAgent)
 	const handleInstallClick = async () => {
 		if (platform === "Firefox Mobile") {
 			window.alert(
