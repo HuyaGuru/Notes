@@ -257,6 +257,9 @@ textarea {
 .d-f {
 	display: flex;
 }
+.d-n {
+	display: none;
+}
 
 /* font size */
 .fs-0-8 {
