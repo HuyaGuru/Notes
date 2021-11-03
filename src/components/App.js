@@ -19,8 +19,8 @@ import deleteIcon from "../assests/delete_white_50.svg";
 import "./App.css";
 
 const App = () => {
-	const cards	= useSelector(cardListFunc);
-	const currCard  = useSelector(currentCardFunc);
+	const cards = useSelector(cardListFunc);
+	const currCard = useSelector(currentCardFunc);
 
 	const dispatch = useDispatch();
 
@@ -31,8 +31,8 @@ const App = () => {
 	const [reset, setReset] = useState(false);
 
 	const padEditableTextRef = useRef();
-	const deferredEvent 	 = useRef();
-	const installButton 	 = useRef();
+	const deferredEvent = useRef();
+	const installButton = useRef();
 
 	useEffect(() => {
 		padEditableTextRef.current.focus();
@@ -80,12 +80,15 @@ const App = () => {
 		dispatch(setCurrentCard(0));
 		setReset(true);
 	};
-	
+
 	useEffect(() => {
 		window.addEventListener("beforeinstallprompt", (e) => {
 			deferredEvent.current = e;
 			installButton.current = true;
 		});
+		if (window.matchMedia("(display-mode: standalone)").matches) {
+			installButton.current = false;
+		}
 	});
 	const platform =
 		navigator.userAgent.includes("Firefox") &&
@@ -97,20 +100,18 @@ const App = () => {
 			window.alert(
 				"Looks like you are using Firefox Mobile. Sorry, this browser isn't supported for this feature.\nYou can follow these steps to do the same:\n1. Go to options menu on the right side of the url bar.\n2. there you would see an 'install' button, press it\n3. done!"
 			);
-		}
-		else if (deferredEvent.current !== null) {
+		} else if (deferredEvent.current !== null) {
 			deferredEvent.current.prompt();
 			const { outcome } = await deferredEvent.current.userChoice;
 			if (outcome === "accepted") {
 				deferredEvent.current = null;
-				installButton.current = false;
 			}
 		}
 	};
 
 	const displayPadClass = padShow ? "d-f" : "";
 	const displayPadEditableClass = padEditableShow ? "d-f" : "";
-	const displayInstallButton = installButton.current ? "d-b" : "";
+	const displayInstallButton = installButton.current ? "d-b" : "d-n";
 
 	return (
 		<div className="main-grid">
