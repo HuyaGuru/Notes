@@ -33,6 +33,7 @@ const App = () => {
 	const padEditableTextRef = useRef();
 	const deferredEvent = useRef();
 	const installButton = useRef();
+	installButton.current = true
 
 	useEffect(() => {
 		padEditableTextRef.current.focus();
@@ -84,7 +85,6 @@ const App = () => {
 	useEffect(() => {
 		window.addEventListener("beforeinstallprompt", (e) => {
 			deferredEvent.current = e;
-			installButton.current = true;
 		});
 		if (window.matchMedia("(display-mode: standalone)").matches) {
 			installButton.current = false;
