@@ -1,12 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Azeret+Mono&family=Montserrat:wght@400;700&display=swap");
 :root {
-    --pink: #CE93D8;
-    --pink10: rgba(206, 147, 216, 0.1);
-    --greyBackground: #212121;
+	--ff-brand: "Azeret Mono", monospace;
+	--ff-normal: "Montserrat", sans-serif;
+
+	--clr-primary: white;
+	--clr-dark: #212121;
+	--clr-accent: coral;
+	color: var(--clr-primary);
 }
 
+* {
+	box-sizing: border-box;
+	font-family: inherit;
+	color: inherit;
+}
 body {
-    height: 100vh;
-    width: 100vw;
-    margin: 0px;
-    background-color: var(--greyBackground);
+	font-family: var(--ff-normal);
+	background: var(--clr-dark);
+	height: 100vh;
+}
+html,
+body,
+p,
+ul {
+	margin: 0;
+	padding: 0;
 }

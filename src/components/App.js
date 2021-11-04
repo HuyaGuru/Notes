@@ -12,8 +12,8 @@ import Pad from "./Pad";
 import PadEditable from "./PadEditable";
 
 // icons
-import addIcon from "../assests/add_black_24dp 1.svg";
-import deleteIcon from "../assests/delete_white_50.svg";
+import addIcon from "../assests/add_white_48dp.svg";
+import deleteIcon from "../assests/delete_white_48dp.svg";
 
 // stylesheet
 import "./App.css";
@@ -33,7 +33,7 @@ const App = () => {
 	const padEditableTextRef = useRef();
 	const deferredEvent = useRef();
 	const installButton = useRef();
-	installButton.current = true
+	installButton.current = true;
 
 	useEffect(() => {
 		padEditableTextRef.current.focus();
@@ -90,46 +90,57 @@ const App = () => {
 			installButton.current = false;
 		}
 	});
-	const platform =
-		navigator.userAgent.includes("Firefox") &&
-		navigator.userAgent.includes("Mobile")
-			? "Firefox Mobile"
-			: "";
-	console.log(navigator.userAgent)
-	const handleInstallClick = async () => {
-		if (platform === "Firefox Mobile") {
-			window.alert(
-				"Looks like you are using Firefox Mobile. Sorry, this browser isn't supported for this feature.\nYou can follow these steps to do the same:\n1. Go to options menu on the right side of the url bar.\n2. there you would see an 'install' button, press it\n3. done!"
-			);
-		} else if (deferredEvent.current !== null) {
-			deferredEvent.current.prompt();
-			const { outcome } = await deferredEvent.current.userChoice;
-			if (outcome === "accepted") {
-				deferredEvent.current = null;
-			}
-		}
-	};
+	// const platform =
+	// 	navigator.userAgent.includes("Firefox") &&
+	// 	navigator.userAgent.includes("Mobile")
+	// 		? "Firefox Mobile"
+	// 		: "";
+	// console.log(navigator.userAgent);
+	// const handleInstallClick = async () => {
+	// 	if (platform === "Firefox Mobile") {
+	// 		window.alert(
+	// 			"Looks like you are using Firefox Mobile. Sorry, this browser isn't supported for this feature.\nYou can follow these steps to do the same:\n1. Go to options menu on the right side of the url bar.\n2. there you would see an 'install' button, press it\n3. done!"
+	// 		);
+	// 	} else if (deferredEvent.current !== null) {
+	// 		deferredEvent.current.prompt();
+	// 		const { outcome } = await deferredEvent.current.userChoice;
+	// 		if (outcome === "accepted") {
+	// 			deferredEvent.current = null;
+	// 		}
+	// 	}
+	// };
 
-	const displayPadClass = padShow ? "d-f" : "";
-	const displayPadEditableClass = padEditableShow ? "d-f" : "";
-	const displayInstallButton = installButton.current ? "d-b" : "d-n";
+	const displayPadClass = padShow ? "d-f" : "d-n";
+	const displayPadEditableClass = padEditableShow ? "d-f" : "d-n";
+	// const displayInstallButton = installButton.current ? "d-b" : "d-n";
 
 	return (
-		<div className="main-grid">
-			<div className="nav">
+		<div className="main">
+			<div className="side">
+				<header className="header">
+					<div className="brand">
+						App<span className="brand-orange">/</span>
+						<button className="btn btn__brand brand-orange">
+							Notes
+						</button>
+					</div>
+				</header>
 				<div className="top">
-					<span className="Brand">notes</span>
-					<button
-						className={`install-button h-cu-p ${displayInstallButton}`}
-						onClick={handleInstallClick}
-					>
-						install
+					{/* <button
+							className={`install-button h-cu-p ${displayInstallButton}`}
+							onClick={handleInstallClick}
+						>
+							install
+						</button> */}
+					<button className="btn" onClick={handleAddClick}>
+						<img className="btn__icon" src={addIcon} alt="new" />
 					</button>
-					<button
-						className={`top-delete d-b`}
-						onClick={handleDeleteClick}
-					>
-						<img src={deleteIcon} alt="delete" />
+					<button className="btn" onClick={handleDeleteClick}>
+						<img
+							className="btn__icon"
+							src={deleteIcon}
+							alt="delete"
+						/>
 					</button>
 				</div>
 				<div className="cards">
@@ -152,14 +163,6 @@ const App = () => {
 							return null;
 						}
 					})}
-				</div>
-				<div className="bottom">
-					<button
-						className="button-circle h-cu-p"
-						onClick={handleAddClick}
-					>
-						<img src={addIcon} alt="new" />
-					</button>
 				</div>
 			</div>
 			<Pad

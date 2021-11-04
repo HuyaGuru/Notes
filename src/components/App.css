@@ -1,103 +1,98 @@
-@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,400;0,700;1,400&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Nova+Mono&display=swap");
-
-:root {
-	--pink: #ce93d8;
-	--pinkLight: #ffc4ff;
-	--pink10: rgba(206, 147, 216, 0.1);
-	--greyBackground: #212121;
-	font-size: 16px;
-}
-
-* {
-	box-sizing: border-box;
-	font-family: "Red Hat Display", Helvetica, sans-serif;
-}
-
-body {
-	height: 100vh;
-	width: 100vw;
-	margin: 0px;
-	background-color: var(--greyBackground);
-}
-
-p {
-	margin: 0;
-}
-
-button {
-	border: none;
-	outline: none;
-	box-shadow: none;
-	background-color: rgba(0, 0, 0, 0);
-}
-
-hr {
-	color: rgba(206, 147, 216, 0.5);
-	width: 95%;
-	margin-bottom: 1rem;
-}
-
 textarea {
 	resize: none;
 }
-
+input {
+	outline: none;
+}
+.header {
+	display: flex;
+	justify-content: left;
+}
+.brand {
+	font-size: 1.2rem;
+	display: flex;
+	font-family: var(--ff-brand);
+	line-height: 1.2em;
+	position: relative;
+}
+.brand-orange {
+	color: var(--clr-accent);
+}
+.btn {
+	border: none;
+	background: none;
+	display: inline-flex;
+	margin: 0;
+	padding: 0;
+	line-height: inherit;
+	cursor: pointer;
+	font-size: inherit;
+	align-items: center;
+}
+.btn:focus {
+	outline: none;
+}
+.btn__brand {
+	position: relative;
+}
+.btn__brand:focus {
+	outline: rgb(119, 119, 119) 0.02em solid;
+	background-color: hsla(0, 0%, 70%, 0.1);
+}
+.btn__brand::after {
+	position: absolute;
+	height: 100%;
+	top: 0;
+	right: -0.1em;
+	border-right: 0.13em solid orange;
+	opacity: 0;
+	animation: blink 1s linear infinite;
+}
+.btn__brand:hover::after,
+.btn__brand:focus-visible::after {
+	content: "";
+}
+@keyframes blink {
+	49% {
+		opacity: 0;
+	}
+	50%,
+	100% {
+		opacity: 1;
+	}
+}
+.btn__icon {
+	height: 1.5rem;
+	width: 1.5rem;
+}
 #root {
 	height: 100%;
 }
 
-.main-grid {
+.main {
 	display: grid;
-	height: 100%;
-	grid-template-columns: 20vw 5fr;
-	grid-template-rows: repeat(1, 1fr);
-	grid-template-areas: "nav pad";
+	width: 100%;
+	height: 99.9%;
+	grid-template-columns: clamp(250px, 20%, 300px) auto;
+	grid-template-areas: "side pad";
+	position: relative;
 }
-
-.nav {
-	background-color: var(--pink10);
-	grid-area: nav;
-	grid-column: 1;
-	grid-row: 1;
+.side {
+	grid-area: side;
 	display: flex;
 	flex-direction: column;
-	overflow: auto;
+	row-gap: 1em;
+	position: relative;
+	padding: 1em 1.2em 0em 1em;
+	border-right: 0.15em rgba(255, 127, 80, 0.2) solid;
 }
-
 .top {
-	background-color: rgba(80, 79, 79, 0.5);
-	height: 4rem;
-	margin-bottom: 1rem;
 	display: flex;
 	align-items: center;
-	padding: 1rem;
-}
-
-.Brand {
-	color: #9dd893;
-	font-family: "Nova Mono", "Gill Sans MT", Calibri, "Trebuchet MS",
-		sans-serif;
-	font-weight: 400;
-	font-size: 17px;
-	letter-spacing: 0.05rem;
-}
-
-.top-delete {
-	margin-left: auto;
-	display: none;
-}
-
-.divider {
-	display: flex;
-	column-gap: 0.5rem;
-	padding: 0rem;
-	align-items: center;
-}
-
-.divider-text {
-	color: #666262;
-	font-size: 0.8rem;
-	font-weight: 700;
+	justify-content: space-between;
+	background-color: rgba(255, 255, 255, 0.05);
+	border-radius: 0.2em;
+	padding: 0.3em 0.5em;
 }
 
 .line {
@@ -107,12 +102,8 @@ textarea {
 .cards {
 	display: flex;
 	flex-direction: column;
-}
-.bottom {
-	margin: auto 1rem 1rem auto;
-	z-index: 2;
-	position: sticky;
-	bottom: 1rem;
+	row-gap: 0.5em;
+	column-gap: 0.5em;
 }
 .install-button {
 	background-color: #9dd893;
@@ -120,83 +111,121 @@ textarea {
 	font-weight: bold;
 	border-radius: 0.2rem;
 }
-.button-circle {
-	background-color: var(--pinkLight);
-	border-radius: 2rem;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 3rem;
-	width: 3rem;
-}
 
 .pad {
 	grid-area: pad;
-	grid-row: 1;
-	display: none;
-	color: white;
-	border: 0.1rem solid var(--pink);
-	border-radius: 0.5rem;
-	padding: 1rem;
 	flex-direction: column;
-	row-gap: 1rem;
-}
-
-.pad-header {
-	display: flex;
-	height: 2rem;
-}
-.pad-title {
 	height: 100%;
-	width: 60%;
+	width: 100%;
+	padding: 1em;
+	position: relative;
 }
-.pad-title:focus {
-	background-color: var(--pink10);
+.pad__top {
+	display: flex;
+	align-items: center;
+	height: fit-content;
+}
+.pad__title {
+	display: flex;
+	align-items: center;
+	column-gap: 0.5em;
+	font-weight: bold;
+	font-size: 1.2rem;
+	position: relative;
+	padding: 0.2em 1em;
+	color: hsl(0, 0%, 80%);
+	background-color: #392b25;
+}
+.pad__title::before {
+	content: "";
+	border-radius: 0.2em;
+	position: absolute;
+	width: 100%;
+	outline: 0.1em orange solid;
+	top: -0.1em;
+	left: 0;
+}
+.pad__title__textarea {
+	border: none;
+	border-top: 0.1em orange solid;
+	text-align: left;
+	vertical-align: middle;
+	padding: 0.2em 1em;
+}
+.btn--bg-orange300 {
+	background-color: #392b25;
+	height: 100%;
+	border-top: 0.1em orange solid;
+	padding-right: 0.5em;
+}
+.btn--opacity300 {
+	opacity: 0.4;
+}
+.pad__writable {
+	padding: 1.5em 2em;
+	background-color: #392b25;
+	height: 100%;
+	border-radius: 0.2em;
+	line-height: 1.5em;
+	letter-spacing: 0.05em;
+}
+.pad__textarea{
+	width: 100%;
+	height: 100%;
+	background: none;
+	border: none;
+	outline: none;
+	line-height: 1.5em;
+	letter-spacing: 0.05em;
+	font-size: 1.1rem;
+	overflow-wrap: break-word;
+}
+.btn__circle {
+	position: absolute;
+	bottom: 10%;
+	right: 7%;
+	border-radius: 50%;
+	background-color: var(--clr-accent);
+	padding: 1em;
 }
 /* media queries */
 @media screen and (max-width: 324px) {
-	.nav {
+	.side {
 		width: 100vw;
 		z-index: 2;
 	}
-	.cards {
+	/* .cards {
 		flex-direction: column;
-	}
+	} */
 	.pad {
 		grid-column-start: 1;
 		width: 100vw;
 		z-index: 3;
-	}
-	.button-circle {
-		z-index: 4;
 	}
 }
 @media screen and (min-width: 324px) and (max-width: 425px) {
-	.nav {
+	.side {
 		width: 100vw;
 		z-index: 2;
 	}
-	.cards {
+	/* .cards {
 		column-count: 2;
 		flex-wrap: wrap;
 		flex-direction: row;
-	}
+	} */
 	.pad {
 		grid-column-start: 1;
 		width: 100vw;
 		z-index: 3;
 	}
-	.button-circle {
-		z-index: 4;
-	}
 }
 @media screen and (min-width: 425px) and (max-width: 768px) {
-	.main-grid {
+	.main {
 		grid-template-columns: 1fr 2fr;
 	}
-	.cards {
+	/* .cards {
 		grid-template-columns: 1fr;
-	}
+	} */
 }
 
 /* utility classes */

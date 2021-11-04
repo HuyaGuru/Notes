@@ -6,8 +6,9 @@ import {
 	cardListFunc,
 } from "../features/cardList/cardListSlice";
 
-import backIcon from "../assests/arrow_back_ios_black_24dp 1.svg";
-import doneIcon from "../assests/done_white_24dp 1.svg";
+import backIcon from "../assests/clear_white_48dp.svg";
+import doneIcon from "../assests/done_black_48dp.svg";
+
 import { useSelector } from "react-redux";
 import { setCurrentCard } from "../features/currentCard";
 
@@ -52,38 +53,36 @@ const PadEditable = (props) => {
 	const date = giveDate();
 
 	return (
-		<div className={`pad ${props.displayClass} bgc-custom`}>
-			<div className="pad-header">
-				<button
-					className="d-f ai-c bgc-n c-p fs-1-1 h-c-s h-cu-p"
-					onClick={props.handlePadHide}
-				>
-					<img src={backIcon} alt="back" />
-					<span>Back</span>
-				</button>
-				<textarea
-					className="pad-title ml-a bgc-n b-n o-n ta-c c-p fs-1-1 fw-b ls-0-01 br-0-5"
+		<div className={`pad ${props.displayClass}`}>
+			<div className="pad__top">
+				<input
+					type="text"
+					className="pad__title pad__title__textarea"
 					onChange={handleTitleChange}
 					value={padTitle}
-				></textarea>
-				<button
-					className="ml-a d-f ai-c bgc-n c-p fs-1-1 h-c-s cg-0-3 h-cu-p"
-					onClick={handleOnClick}
-				>
-					<span>Done</span>
-					<img src={doneIcon} alt="done" />
+					size={padTitle.length - padTitle.length/2}
+				></input>
+				<button className="btn btn--bg-orange300" onClick={props.handlePadHide}>
+					<img
+						src={backIcon}
+						alt="close"
+						className="btn__icon btn--opacity300"
+					/>
 				</button>
 			</div>
-			<div className="h-90">
+			<div className="pad__writable">
 				<textarea
 					ref={props.textRef}
-					className="w-100 bgc-n b-1 c-p h-100 o-n br-0-5 p-1"
+					className="pad__textarea"
 					value={padText}
 					onChange={handlePadTextChange}
 				></textarea>
+				<button className="btn btn__circle" onClick={handleOnClick}>
+					<img src={doneIcon} alt="done" className="btn__icon" />
+				</button>
 			</div>
 		</div>
 	);
-}
+};
 
 export default PadEditable;
