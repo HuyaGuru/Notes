@@ -25,7 +25,7 @@ function Card(props) {
 	};
 	return (
 		<div className="card">
-			<div className="d-f w-100 ai-c ">
+			<div className="card__first">
 					<input
 						type="checkbox"
 						id={props.index}
@@ -34,7 +34,7 @@ function Card(props) {
 					/>
 				<label htmlFor={props.index} className="w-100">
 					<button
-						className="card-title ow-a w-100 h-cu-p"
+						className="btn card__text"
 						onClick={props.handleCardClick}
 						data-index={props.index}
 					>
@@ -43,7 +43,7 @@ function Card(props) {
 				</label>
 			</div>
 			<div
-				className="card-date fw-b fs-0-8 h-cu-p"
+				className="card__date"
 				data-index={props.index}
 			>
 				{displayDate}
