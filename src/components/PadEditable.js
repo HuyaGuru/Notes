@@ -22,7 +22,16 @@ const PadEditable = (props) => {
 	}, [cards, props.index]);
 
 	const handleOnClick = () => {
-		if (props.edit) {
+		if (props.edit && padTitle === "") {
+			props.dispatch(
+				replace({
+					index: props.index,
+					title: "Untitled",
+					text: padText,
+					date: date,
+				})
+			);
+		} else if (props.edit && padTitle !== "") {
 			props.dispatch(
 				replace({
 					index: props.index,
@@ -31,6 +40,11 @@ const PadEditable = (props) => {
 					date: date,
 				})
 			);
+		} else if (!props.edit && padTitle === "") {
+			props.dispatch(
+				push({ title: "Untitled", date: date, text: padText })
+			);
+			props.dispatch(setCurrentCard(cards.length));
 		} else {
 			props.dispatch(
 				push({ title: padTitle, date: date, text: padText })
@@ -40,7 +54,9 @@ const PadEditable = (props) => {
 		props.handleDoneClick();
 	};
 	const handleTitleChange = (e) => {
-		setPadTitle(e.target.value);
+		if (e.target.value.length < 16) {
+			setPadTitle(e.target.value);
+		}
 	};
 	const handlePadTextChange = (e) => {
 		setPadText(e.target.value);
@@ -61,9 +77,11 @@ const PadEditable = (props) => {
 					onChange={handleTitleChange}
 					value={padTitle}
 					size={padTitle.length - 4}
-					maxLength="10"
 				></input>
-				<button className="btn btn--bg-orange300" onClick={props.handlePadHide}>
+				<button
+					className="btn btn--bg-orange300"
+					onClick={props.handlePadHide}
+				>
 					<img
 						src={backIcon}
 						alt="close"
