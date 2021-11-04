@@ -60,7 +60,8 @@ const PadEditable = (props) => {
 					className="pad__title pad__title__textarea"
 					onChange={handleTitleChange}
 					value={padTitle}
-					size={padTitle.length - padTitle.length/2}
+					size={padTitle.length - 4}
+					maxLength="10"
 				></input>
 				<button className="btn btn--bg-orange300" onClick={props.handlePadHide}>
 					<img
