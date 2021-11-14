@@ -4,7 +4,7 @@ export const cardListSlice = createSlice({
     name: "cardList",
     initialState: [
         {title: "Untitled", text:""},
-        { title: "Bio Class", date: [2021, 9, 17], text: "Mitochondria is the power house of the cell." },
+        { title: "Update!!", date: [2021, 10, 17], text: "A newer version of this app is available at notes-huyaguru.vercel.app" },
         { title: "Groceries", date: [2021, 9, 16], text: "1kg Tomatoes\n1kg Onions" },
         { title: "Movies", date: [2021, 9, 15], text: "Godzilla: King of Monsters" },
     ],
